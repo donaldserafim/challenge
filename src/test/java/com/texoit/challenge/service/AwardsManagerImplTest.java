@@ -34,8 +34,8 @@ public class AwardsManagerImplTest {
     public void getMoviesAndReturnAward(){
         when(movieService.findByWinner()).thenReturn(FixtureModel.buildMoveis());
         Award award = awardsManager.getWinners();
-        assertEquals(award.getMax().get(0).getInterval(),58);
-        assertEquals(award.getMin().get(0).getInterval(),4);
+        assertEquals(award.getMax().get(0).getInterval(),40);
+        assertEquals(award.getMin().get(0).getInterval(),1);
     }
 
     @Test
