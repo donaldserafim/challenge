@@ -40,16 +40,16 @@ public class AwardControllerTest {
     public void shouldReturnWinners() throws Exception {
 
         Winner winnerMax = new Winner();
-        winnerMax.setPreviousWin(1990);
-        winnerMax.setFollowingWin(2023);
-        winnerMax.setInterval(33);
-        winnerMax.setProducer("Stvie");
+        winnerMax.setPreviousWin(2002);
+        winnerMax.setFollowingWin(2015);
+        winnerMax.setInterval(13);
+        winnerMax.setProducer("Matthew Vaughn");
 
         Winner winnerMin = new Winner();
         winnerMin.setPreviousWin(1990);
         winnerMin.setFollowingWin(1991);
         winnerMin.setInterval(1);
-        winnerMin.setProducer("Stvie");
+        winnerMin.setProducer("Joel Silver");
 
         Award award = new Award();
         award.setMin(Arrays.asList(winnerMin));
