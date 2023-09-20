@@ -59,4 +59,27 @@ public class AwardControllerTest {
         mockMvc.perform(get("/award/winners")).andExpect(status().isOk())
                 .andExpect(content().json(ReadFileUtils.readFileAndReturnLines("contracts/award.json")));
     }
+
+    @Test
+    public void shouldCallWrong() throws Exception {
+
+        Winner winnerMax = new Winner();
+        winnerMax.setPreviousWin(2002);
+        winnerMax.setFollowingWin(2015);
+        winnerMax.setInterval(13);
+        winnerMax.setProducer("Matthew Vaughn");
+
+        Winner winnerMin = new Winner();
+        winnerMin.setPreviousWin(1990);
+        winnerMin.setFollowingWin(1991);
+        winnerMin.setInterval(1);
+        winnerMin.setProducer("Joel Silver");
+
+        Award award = new Award();
+        award.setMin(Arrays.asList(winnerMin));
+        award.setMax(Arrays.asList(winnerMax));
+
+        when(awardsManagerService.getWinners()).thenReturn(award);
+        mockMvc.perform(get("/award/winnerss")).andExpect(status().is4xxClientError());
+    }
 }
