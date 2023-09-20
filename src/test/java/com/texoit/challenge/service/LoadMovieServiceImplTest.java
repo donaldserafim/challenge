@@ -15,7 +15,7 @@ public class LoadMovieServiceImplTest {
 
     @Test
     public void readFileAndReturnFiveMovies(){
-        assertEquals(loadMovieService.readMovieFromFile("data/movielist.csv").size(),45);
+        assertEquals(loadMovieService.readMovieFromFile("data/movielist.csv").size(),206);
     }
 
     @Test

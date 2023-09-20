@@ -12,7 +12,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import static org.mockito.Mockito.when;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -41,12 +40,9 @@ public class AwardsManagerImplTest {
 
     @Test
     public void readFileAndReturnMovies(){
-        when(movieService.findByWinner()).thenReturn(loadMovieService.readMovieFromFile("data/movielist.csv"));
+        when(movieService.findByWinner()).thenReturn(loadMovieService.readMovieFromFile("data/movielist_winners.csv"));
         Award award = awardsManager.getWinners();
-        assertEquals(award.getMax().get(0).getInterval(),37);
-        assertEquals(award.getMin().get(0).getInterval(),6);
+        assertEquals(award.getMax().get(0).getInterval(),13);
+        assertEquals(award.getMin().get(0).getInterval(),1);
     }
-
-
-
 }

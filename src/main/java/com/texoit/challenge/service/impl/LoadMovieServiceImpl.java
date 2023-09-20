@@ -53,7 +53,7 @@ public class LoadMovieServiceImpl implements LoadMovieService {
 
         movie.setYear(line[YEAR]!=null?Integer.parseInt(line[YEAR]):0);
         movie.setTitle(line[TITLE]!=null? line[TITLE] :"");
-        movie.setProducers(line[PRODUCERS]!=null?Arrays.stream(line[PRODUCERS].split(", ")).toList():Collections.emptyList());
+        movie.setProducers(line[PRODUCERS]!=null?Arrays.stream(line[PRODUCERS].replaceAll(" and",",").split(", ")).toList():Collections.emptyList());
         movie.setStudios(line[STUDIOS]!=null? Arrays.stream(line[STUDIOS].split(", ")).toList(): Collections.emptyList());
 
         if(line.length == HAS_WINNER){

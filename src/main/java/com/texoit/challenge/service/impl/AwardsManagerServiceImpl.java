@@ -8,7 +8,6 @@ import com.texoit.challenge.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class AwardsManagerServiceImpl implements AwardsManagerService {
@@ -26,8 +25,7 @@ public class AwardsManagerServiceImpl implements AwardsManagerService {
     private Winner getProducerWithLongestGap(List<Movie> movies){
         List<Winner> winners = new ArrayList<>();
 
-        Map<String, List<Movie>> moviesGroups = movies.stream()
-                .collect(Collectors.groupingBy(Movie::getGroupProducers));
+        Map<String, List<Movie>> moviesGroups = getGroupMoviesFromProducer(movies);
 
         for (Map.Entry<String, List<Movie>> movieGroup : moviesGroups.entrySet()) {
             if(movieGroup.getValue().size() < 2){
@@ -60,8 +58,7 @@ public class AwardsManagerServiceImpl implements AwardsManagerService {
     private Winner getProducerWithFastestTwoAwards(List<Movie> movies){
         List<Winner> winners = new ArrayList<>();
 
-        Map<String, List<Movie>> moviesGroups = movies.stream()
-                .collect(Collectors.groupingBy(Movie::getGroupProducers));
+        Map<String, List<Movie>> moviesGroups = getGroupMoviesFromProducer(movies);
 
         for (Map.Entry<String, List<Movie>> movieGroup : moviesGroups.entrySet()) {
             if(movieGroup.getValue().size() <2){
@@ -88,5 +85,18 @@ public class AwardsManagerServiceImpl implements AwardsManagerService {
             winners.add(winner);
         }
         return  Collections.min(winners, Comparator.comparing(c -> c.getInterval()));
+    }
+
+    private Map<String, List<Movie>> getGroupMoviesFromProducer(List<Movie> movies) {
+        Map<String, List<Movie>> moviesGroups = new HashMap<String, List<Movie>>();
+        for (Movie movie: movies){
+            for(String producer: movie.getProducers()){
+                if (!moviesGroups.containsKey(producer)) {
+                    moviesGroups.put(producer, new ArrayList<>());
+                }
+                moviesGroups.get(producer).add(movie);
+            }
+        }
+        return moviesGroups;
     }
 }

@@ -33,12 +33,4 @@ public class Movie {
     private List<String> producers;
 
     private Boolean winner;
-
-
-    public String getGroupProducers(){
-        if(this.producers !=null){
-            return this.producers.stream().map(producer -> producer).collect(Collectors.joining(" AND "));
-        }
-        return "";
-    }
 }
