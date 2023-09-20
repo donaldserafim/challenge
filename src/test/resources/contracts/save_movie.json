@@ -1,0 +1,14 @@
+ {
+    "id":1,
+    "year":1950,
+    "title":"O vento levou",
+    "studios":[
+      "Donald",
+      "Willians"
+    ],
+    "producers":[
+      "Donald",
+      "Willians"
+    ],
+    "winner":true
+ }
