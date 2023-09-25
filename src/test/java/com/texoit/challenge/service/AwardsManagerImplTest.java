@@ -49,6 +49,14 @@ public class AwardsManagerImplTest {
     }
 
     @Test
+    public void readFileAndAddMoreMoviesAndReturnMovies(){
+        when(movieService.findByWinner()).thenReturn(loadMovieService.readMovieFromFile("data/movielist_winners_add_more.csv"));
+        Award award = awardsManager.getWinners();
+        assertEquals(award.getMax().get(0).getInterval(),22);
+        assertEquals(award.getMin().get(0).getInterval(),1);
+    }
+
+    @Test
     public void readFileAndReturnMoviesWrong(){
         when(movieService.findByWinner()).thenReturn(loadMovieService.readMovieFromFile("data/movielist_winners_wrong.csv"));
         Award award = awardsManager.getWinners();

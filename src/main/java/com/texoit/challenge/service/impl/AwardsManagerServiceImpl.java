@@ -18,8 +18,9 @@ public class AwardsManagerServiceImpl implements AwardsManagerService {
     @Override
     public Award getWinners() {
         Award award = new Award();
-        award.setMax(Arrays.asList(getProducerWithLongestGap(movieService.findByWinner())));
-        award.setMin(Arrays.asList(getProducerWithFastestTwoAwards(movieService.findByWinner())));
+        List<Movie> movieList = movieService.findByWinner();
+        award.setMax(Arrays.asList(getProducerWithLongestGap(movieList)));
+        award.setMin(Arrays.asList(getProducerWithFastestTwoAwards(movieList)));
         return award;
     }
     private Winner getProducerWithLongestGap(List<Movie> movies){

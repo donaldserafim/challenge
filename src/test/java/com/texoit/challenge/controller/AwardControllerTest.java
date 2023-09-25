@@ -61,6 +61,30 @@ public class AwardControllerTest {
     }
 
     @Test
+    public void shouldReturnWinnerWhenAddMovies() throws Exception {
+
+        Winner winnerMax = new Winner();
+        winnerMax.setPreviousWin(1980);
+        winnerMax.setFollowingWin(2002);
+        winnerMax.setInterval(22);
+        winnerMax.setProducer("Matthew Vaughn");
+
+        Winner winnerMin = new Winner();
+        winnerMin.setPreviousWin(2002);
+        winnerMin.setFollowingWin(2003);
+        winnerMin.setInterval(1);
+        winnerMin.setProducer("Matthew Vaughn");
+
+        Award award = new Award();
+        award.setMin(Arrays.asList(winnerMin));
+        award.setMax(Arrays.asList(winnerMax));
+
+        when(awardsManagerService.getWinners()).thenReturn(award);
+        mockMvc.perform(get("/award/winners")).andExpect(status().isOk())
+                .andExpect(content().json(ReadFileUtils.readFileAndReturnLines("contracts/award_more_movies.json")));
+    }
+
+    @Test
     public void shouldCallWrong() throws Exception {
 
         Winner winnerMax = new Winner();

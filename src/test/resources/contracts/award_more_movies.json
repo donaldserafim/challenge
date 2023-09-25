@@ -1,0 +1,18 @@
+{
+  "min": [
+    {
+      "producer": "Matthew Vaughn",
+      "interval": 1,
+      "previousWin": 2002,
+      "followingWin": 2003
+    }
+  ],
+  "max": [
+    {
+      "producer": "Matthew Vaughn",
+      "interval": 22,
+      "previousWin": 1980,
+      "followingWin": 2002
+    }
+  ]
+}
